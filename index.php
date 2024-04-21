@@ -30,6 +30,12 @@
 
     getJSONFile($array, $name);
     // var_dump($array);
+
+    $file = file($csvFileName);
+    $file = array_map("utf8_encode", $file);
+
+    $opcoes = [];
+
     ?>
 
     <main>
@@ -56,22 +62,46 @@
                     ?>
                 </select> -->
                 <select class="form-select">
-                  <option selected disabled>Orgao_superior_nome</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <option selected disabled value="">Orgão Superior</option>
+                  <?php
+                  $opcoes = [];
+                  foreach ($file as $line) {
+                    $line = str_getcsv($line,";");
+                    $opcoes[$line[0]] = null;
+                  }
+                  array_splice($opcoes, 0, 1);
+                  foreach($opcoes as $key => $value){
+                    echo '<option value="'.$key.'">'.$key.'</option>';
+                  }
+                  ?>
                 </select>
                 <select class="form-select">
-                  <option selected disabled>Orgao_nome</option>
+                  <option selected disabled>Departamento</option>
+                  <?php
+                  $opcoes = [];
+                  foreach ($file as $line) {
+                    $line = str_getcsv($line,";");
+                    $opcoes[$line[1]] = null;
+                  }
+                  array_splice($opcoes, 0, 1);
+                  foreach($opcoes as $key => $value){
+                    echo '<option value="'.$key.'">'.$key.'</option>';
+                  }
+                  ?>
                 </select>
                 <select class="form-select">
-                  <option selected disabled>Nome_item</option>    
-                </select>
-                <select class="form-select">
-                  <option selected disabled>Nome_natureza_despesa_detalhada</option>    
-                </select>
-                <select class="form-select">
-                  <option selected disabled>Nome_natureza_despesa_detalhada</option>    
+                  <option selected disabled>Nome Item</option>
+                  <?php
+                  $opcoes = [];
+                  foreach ($file as $line) {
+                    $line = str_getcsv($line,";");
+                    $opcoes[$line[3]] = null;
+                  }
+                  array_splice($opcoes, 0, 1);
+                  foreach($opcoes as $key => $value){
+                    echo '<option value="'.$key.'">'.$key.'</option>';
+                  }
+                  ?>
                 </select>
                 <div class="form-group">
                     <p>Visualizar: <a href="createAccount.php">Histórico de Pesquisa</a></p>
