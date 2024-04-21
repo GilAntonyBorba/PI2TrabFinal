@@ -41,62 +41,16 @@
     <main>
         <h1 id="title">Custeio-Administrativo</h1>
         <div id="div-form">
-            <form name="" action="processaFormLogin.php" method="post" id="form-create-account">
-                <h3>Pesquisa</h3>
-                <!-- <div class="form-group">
-                  <label for="orgao_superior_nome">Orgao_superior_nome</label>
-                  <input type="text" class="form-control" id="orgao_superior_nome" placeholder="Ex: MINISTÉRIO DA EDUCAÇÃO" name="orgao_superior_nome">
-                </div> -->
-
-                <!-- <select onchange="this.form.submit()" name="tabuada">
-                    <?php
-                        //$number = $_POST['tabuada'];
-                        // for($i=1; $i<10; $i++){
-                        //     if($number!=$i){
-                        //         echo "<option value='{$i}'>{$i}</option>";
-                              
-                        //     }else{
-                        //         echo "<option selected value='{$i}'>{$i}</option>";
-                        //     }
-                        // } 
-                    ?>
-                </select> -->
-                
-                <select class="form-select">
-                  <option selected disabled value="">Orgão Superior</option>
+            <form name="" action="" method="post" id="form-create-account">
+                <h3>Pesquisa por Item</h3>
+                <select class="form-select" name="itens">
+                  <option selected disabled>Item</option>
+                  <option value="TODOS">TODOS</option>
                   <?php
                   $opcoes = [];
                   foreach ($file as $line) {
                     $line = str_getcsv($line,";");
-                    $opcoes[$line[0]] = null;
-                  }
-                  array_splice($opcoes, 0, 1);
-                  foreach($opcoes as $key => $value){
-                    echo '<option value="'.$key.'">'.$key.'</option>';
-                  }
-                  ?>
-                </select>
-                <select class="form-select">
-                  <option selected disabled>Departamento</option>
-                  <?php
-                  $opcoes = [];
-                  foreach ($file as $line) {
-                    $line = str_getcsv($line,";");
-                    $opcoes[$line[1]] = null;
-                  }
-                  array_splice($opcoes, 0, 1);
-                  foreach($opcoes as $key => $value){
-                    echo '<option value="'.$key.'">'.$key.'</option>';
-                  }
-                  ?>
-                </select>
-                <select class="form-select">
-                  <option selected disabled>Nome Item</option>
-                  <?php
-                  $opcoes = [];
-                  foreach ($file as $line) {
-                    $line = str_getcsv($line,";");
-                    $opcoes[$line[3]] = null;
+                    $opcoes[$line[2]] = null;
                   }
                   array_splice($opcoes, 0, 1);
                   foreach($opcoes as $key => $value){
@@ -105,9 +59,9 @@
                   ?>
                 </select>
                 <div class="form-group">
-                    <p>Visualizar: <a href="createAccount.php">Histórico de Pesquisa</a></p>
+                    <p><a href="createAccount.php">Visualizar Histórico de Pesquisa</a></p>
                 </div>
-                <button class="btn btn-primary" id="btn-form">Pesquisar</button>
+                <button class="btn btn-primary" id="btn-form" type="submit">Pesquisar</button>
               </form>
         </div>
         <div id="zoomable-sunburst">
@@ -120,6 +74,25 @@
             </script>
         </div>
       </main>
+      <?php
+        if(isset($_POST["itens"])){
+          $item = $_POST["itens"];
+          if($item != "TODOS"){
+            $vetor = [];
+            foreach($array as $orgao => $v){
+              foreach($v as $dep => $v1){
+                foreach($v1 as $gasto => $v2){
+                  if($gasto == $item){
+                    $vetor[$orgao][$dep][$gasto] = $array[$orgao][$dep][$gasto];
+                  }
+                }
+              }
+            }
+            getJSONFile($vetor, $name);
+          }
+          
+        }
+      ?>
     
 </body>
 </html>
