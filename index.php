@@ -29,6 +29,7 @@
     $name = "files/custeioTratado.json";
 
     getJSONFile($array, $name);
+    // var_dump($array);
     ?>
 
     <main>
@@ -36,22 +37,42 @@
         <div id="div-form">
             <form name="" action="processaFormLogin.php" method="post" id="form-create-account">
                 <h3>Pesquisa</h3>
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label for="orgao_superior_nome">Orgao_superior_nome</label>
                   <input type="text" class="form-control" id="orgao_superior_nome" placeholder="Ex: MINISTÉRIO DA EDUCAÇÃO" name="orgao_superior_nome">
-                </div>
-                <div class="form-group">
-                  <label for="orgao_nome">Orgao_nome</label>
-                  <input type="text" class="form-control" id="orgao_nome" placeholder="Ex: INSTITUTO FEDERAL DE EDUCAÇÃO, CIÊNCIA E TECNOLOGIA DO RIO GRANDE DO SUL" name="orgao_nome">
-                </div>
-                <div class="form-group">
-                  <label for="nome_item">Nome_item</label>
-                  <input type="text" class="form-control" id="nome_item" placeholder="Ex: Apoio Administrativo, Técnico e Operacional" name="nome_item">
-                </div>
-                <div class="form-group">
-                  <label for="nome_natureza_despesa_detalhada">Nome_natureza_despesa_detalhada</label>
-                  <input type="text" class="form-control" id="nome_natureza_despesa_detalhada" placeholder="Ex: Apoio Administrativo, Técnico e Operacional" name="nome_natureza_despesa_detalhada">
-                </div>
+                </div> -->
+
+                <!-- <select onchange="this.form.submit()" name="tabuada">
+                    <?php
+                        //$number = $_POST['tabuada'];
+                        // for($i=1; $i<10; $i++){
+                        //     if($number!=$i){
+                        //         echo "<option value='{$i}'>{$i}</option>";
+                              
+                        //     }else{
+                        //         echo "<option selected value='{$i}'>{$i}</option>";
+                        //     }
+                        // } 
+                    ?>
+                </select> -->
+                <select class="form-select">
+                  <option selected disabled>Orgao_superior_nome</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+                <select class="form-select">
+                  <option selected disabled>Orgao_nome</option>
+                </select>
+                <select class="form-select">
+                  <option selected disabled>Nome_item</option>    
+                </select>
+                <select class="form-select">
+                  <option selected disabled>Nome_natureza_despesa_detalhada</option>    
+                </select>
+                <select class="form-select">
+                  <option selected disabled>Nome_natureza_despesa_detalhada</option>    
+                </select>
                 <div class="form-group">
                     <p>Visualizar: <a href="createAccount.php">Histórico de Pesquisa</a></p>
                 </div>
