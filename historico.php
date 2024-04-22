@@ -1,3 +1,16 @@
+<?php
+    include_once 'DBConection.php';
+    if (!empty($_POST)) {
+        foreach ($_POST as $key => $value) {
+            if (strpos($key, 'deletar_') === 0) {
+                $id = str_replace('deletar_', '', $key);
+                include_once 'DBConection.php';
+                DBHelper::removerItem($id);
+                header("Refresh:0");
+            }
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +29,7 @@
 
     <main>
         <div id="voltar">
-            <a href="index.php" class="btn btn-primary">Ir para Outra Página</a>
+            <a href="index.php" class="btn btn-primary"><= Voltar a Página Principal</a>
         </div>
         <h1 id="title">Histórico</h1>
         <?php
@@ -36,10 +49,17 @@
                             <div class="card-body">
                                 <h5 class="card-title">' . $row['item'] . '</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">Data e Hora: ' . $row['data_hora'] . '</h6>
-                                <form action="' . $_SERVER['PHP_SELF'] . '" method="post">
-                                    <input type="hidden" name="id" value=""' . $row['id'] . '">
-                                    <button type="submit" name="deletar_' . $row['id'] . '" class="btn btn-danger">Deletar</button>
-                                </form>
+                                <div class="div-forms">
+                                    <form action="index.php" method="post">
+                                        <input type="hidden" name="itens" value="' . $row['item'] . '">
+                                        <button type="submit" class="btn btn-primary">Pesquisar Novamente</button>
+                                    </form>
+                                    <form action="' . $_SERVER['PHP_SELF'] . '" method="post">
+                                        <input type="hidden" name="id" value=""' . $row['id'] . '">
+                                        <button type="submit" name="deletar_' . $row['id'] . '" class="btn btn-danger">Deletar</button>
+                                    </form>
+                                </div>
+                                
                             </div>
                         </div>';
                         
@@ -47,17 +67,6 @@
             } else {
                 echo "<p>Nenhum registro encontrado.</p>";
             }
-            if (!empty($_POST)) {
-                foreach ($_POST as $key => $value) {
-                    if (strpos($key, 'deletar_') === 0) {
-                        $id = str_replace('deletar_', '', $key);
-                        include_once 'DBConection.php';
-                        DBHelper::removerItem($id);
-                        header("Refresh:0");
-                    }
-                }
-            }
-
         ?>
         
       </main>

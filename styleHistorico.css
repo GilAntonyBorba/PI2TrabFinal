@@ -1,3 +1,10 @@
+.div-forms{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2em;
+    flex-direction: row;
+}
 .card{
     width: 100%;
     display: flex;
