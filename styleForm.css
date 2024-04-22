@@ -5,11 +5,19 @@
     gap: 1em;
 } */
 
-.observablehq div div{
+.observablehq{
     display: none;
+}
+.observablehq div{
+    width: 50%;
 }
 #zoomable-sunburst, p{
     text-align: center;
+    width: 50%;
+}
+#zoomable-sunburst{
+    text-align: center;
+    width: 50%;
 }
 #title {
     text-align: center;

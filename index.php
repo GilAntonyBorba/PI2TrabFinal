@@ -39,11 +39,11 @@
     ?>
 
     <main>
-        <h1 id="title">Custeio-Administrativo</h1>
+        <h1 id="title">Custeio Administrativo 02/2024</h1>
         <div id="div-form">
             <form name="" action="" method="post" id="form-create-account">
                 <h3>Pesquisa por Item</h3>
-                <select class="form-select" name="itens">
+                <select class="form-select" onchange="this.form.submit()" name="itens">
                   <option selected disabled>Item</option>
                   <option value="TODOS">TODOS</option>
                   <?php
@@ -53,15 +53,25 @@
                     $opcoes[$line[2]] = null;
                   }
                   array_splice($opcoes, 0, 1);
+                  if(isset($_POST["itens"])){
+                    $item = $_POST["itens"];
+                  }else{
+                    $item="";
+                  }
+                  
                   foreach($opcoes as $key => $value){
-                    echo '<option value="'.$key.'">'.$key.'</option>';
+                    if($key===$item){
+                      echo '<option value="'.$key.'" selected>'.$key.'</option>';
+                    }else{
+                      echo '<option value="'.$key.'">'.$key.'</option>';
+                    }
                   }
                   ?>
                 </select>
                 <div class="form-group">
                     <p><a href="historico.php">Visualizar Histórico de Pesquisa</a></p>
                 </div>
-                <button class="btn btn-primary" id="btn-form" type="submit">Pesquisar</button>
+                <!-- <button class="btn btn-primary" id="btn-form" type="submit">Pesquisar</button> -->
               </form>
         </div>
         <div id="zoomable-sunburst">
@@ -95,6 +105,13 @@
           DBHelper::saveItem($item, $id);
         }
       ?>
+      <script>
+      
+          window.addEventListener("load", (event) => {
+            document.getElementsByClassName("observablehq")[1].style='width:50%;margin-left: 25%;margin-right: 25%;';
+
+          });
+      </script>
     
 </body>
 </html>
