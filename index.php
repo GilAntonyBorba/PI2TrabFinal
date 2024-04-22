@@ -59,7 +59,7 @@
                   ?>
                 </select>
                 <div class="form-group">
-                    <p><a href="createAccount.php">Visualizar Histórico de Pesquisa</a></p>
+                    <p><a href="historico.php">Visualizar Histórico de Pesquisa</a></p>
                 </div>
                 <button class="btn btn-primary" id="btn-form" type="submit">Pesquisar</button>
               </form>
@@ -90,7 +90,9 @@
             }
             getJSONFile($vetor, $name);
           }
-          
+          $id = uniqid();
+          include_once 'DBConection.php';
+          DBHelper::saveItem($item, $id);
         }
       ?>
     

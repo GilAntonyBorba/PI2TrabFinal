@@ -1,0 +1,37 @@
+.card{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+.card-body{
+    /* margin-top: 0%; */
+    margin-bottom: 2%;
+    max-width: 100%;
+    width: 50%;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px 5px rgba(52, 52, 53, 0.185);
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    gap: 1em;
+}
+.btn-danger{
+    /* background-image: linear-gradient(270deg,#ff4441,#ff3914 45%,#ff6d2a); */
+    background-image: linear-gradient(270deg,#ff001e,#f3394e 100%,#ff94b2);
+    border: #dee2e6;
+}
+.btn-danger:hover{
+    box-shadow: #a88ccc 0px 7px 29px 0px;
+}
+.btn-danger:active {
+    box-shadow: #000000 0px 0px 0px 0px;
+    transform: translate(0%, 10%);
+    transition: 100ms;
+}
+#voltar a{
+    position: absolute;
+    left: 1%;
+    top: 2%;
+}
