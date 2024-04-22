@@ -5,16 +5,16 @@
     gap: 1em;
 } */
 
-.observablehq{
+.observablehq div{
     display: none;
 }
 .observablehq div{
     width: 50%;
 }
-#zoomable-sunburst, p{
+/* #zoomable-sunburst, p{
     text-align: center;
     width: 50%;
-}
+} */
 #zoomable-sunburst{
     text-align: center;
     width: 50%;
